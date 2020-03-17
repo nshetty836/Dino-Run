@@ -520,7 +520,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1974955442}
+      - m_Target: {fileID: 0}
         m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
@@ -1533,7 +1533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pausemenu: {fileID: 628939804}
-  PauseButton: {fileID: 0}
+  PauseButton: {fileID: 1578051541}
 --- !u!1 &1978682550
 GameObject:
   m_ObjectHideFlags: 0
