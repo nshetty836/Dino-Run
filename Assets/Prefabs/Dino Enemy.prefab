@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8552153032495184978}
   - component: {fileID: 7356215987371353894}
   - component: {fileID: 2473483117850894096}
-  m_Layer: 0
+  - component: {fileID: 2465388136960112363}
+  m_Layer: 9
   m_Name: Dino Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +95,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.16564846, y: 0}
@@ -121,3 +122,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &2465388136960112363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613257317104202611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12ecb55facbfa4cc1aa20b6923a52ec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints: []
+  speed: 0.3

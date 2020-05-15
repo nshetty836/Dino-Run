@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 523005934473398142}
   - component: {fileID: 1334973877306484861}
   - component: {fileID: 6777370764119384509}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Booster Gem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
