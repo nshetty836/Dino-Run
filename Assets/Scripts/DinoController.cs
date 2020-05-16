@@ -40,7 +40,7 @@ public class DinoController : MonoBehaviour
         // Multiply the player's x local scale by -1.
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
-        transform.localScale = theScale;
+        transform.localScale = theScale;    
     }
     
     private void OnCollisionEnter2D(Collision2D collision)
