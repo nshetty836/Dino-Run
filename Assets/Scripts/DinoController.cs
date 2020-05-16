@@ -47,7 +47,9 @@ public class DinoController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(collision.gameObject);
+            GameController.health -= 1;
+            if (GameController.health == 0)
+                Destroy(collision.gameObject);
         }
 
     }
