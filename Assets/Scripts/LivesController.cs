@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour
+public class LivesController : MonoBehaviour
 {
     public GameObject heart1, heart2, heart3, gameOver;
     public static int health;
@@ -15,7 +15,6 @@ public class GameController : MonoBehaviour
         heart2.SetActive(true);
         heart3.SetActive(true);
         gameOver.SetActive(false);
-
     }
 
     // Update is called once per frame

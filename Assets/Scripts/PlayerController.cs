@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     private Rigidbody2D rb;
     public bool facingRight = true;
+    //GameManager gm = new GameManager();
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -67,54 +68,40 @@ public class PlayerController : MonoBehaviour
         transform.localScale = theScale;
     }
 
-    //public float speed = 0.4f;
-    //Vector2 dest = Vector2.zero;
-    //private bool m_FacingRight = true;
-
-    //void Start()
+    //private void OnTriggerEnter2D(Collider2D collision)
     //{
-    //    dest = transform.position;
-    //}
-
-    //void FixedUpdate()
-    //{
-    //    // Move closer to Destination
-    //    Vector2 p = Vector2.MoveTowards(transform.position, dest, speed);
-    //    GetComponent<Rigidbody2D>().MovePosition(p);
-
-    //    // Check for Input if not moving
-    //    if ((Vector2)transform.position == dest)
+    //    if (collision.tag == "Enemy")
     //    {
-    //        if (Input.GetKey(KeyCode.UpArrow) && Valid(Vector2.up))
-    //            dest = (Vector2)transform.position + Vector2.up;
-    //        if (Input.GetKey(KeyCode.RightArrow) && Valid(Vector2.right))
-    //            dest = (Vector2)transform.position + Vector2.right;
-    //        if (Input.GetKey(KeyCode.DownArrow) && Valid(-Vector2.up))
-    //            dest = (Vector2)transform.position - Vector2.up;
-    //        if (Input.GetKey(KeyCode.LeftArrow) && Valid(-Vector2.right))
-    //            dest = (Vector2)transform.position - Vector2.right;
+    //        LivesController.health -= 1;
+    //        //gm.StartPause();
+    //        fr.Freeze();
+    //        this.transform.position = new Vector3(14.5f, 14, 0);
+
+    //        if (LivesController.health == 0)
+    //            Destroy(this.gameObject);
     //    }
+
     //}
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            LivesController.health -= 1;
+            if (LivesController.health > 0)
+            {
+                StartCoroutine(Dead());
+            }
+        }
+    }
 
-    //bool Valid(Vector2 dir)
-    //{
-    //    Vector2 pos = transform.position;
-    //    RaycastHit2D hit = Physics2D.Linecast(pos + dir, pos);
-    //    return (hit.collider == GetComponent<Collider2D>());
-    //}
+    IEnumerator Dead()
+    {
+        GetComponent<Renderer>().enabled = false;
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(2);
+        GetComponent<Renderer>().enabled = true;
+        this.transform.position = new Vector3(14.5f, 14, 0);
+        Time.timeScale = 1f;
 
-    //// If the input is moving the player right and the player is facing left...
-    //            if (move > 0 && !m_FacingRight)
-    //            {
-    //                // ... flip the player.
-    //                Flip();
-    //            }
-    //            // Otherwise if the input is moving the player left and the player is facing right...
-    //            else if (move< 0 && m_FacingRight)
-    //            {
-    //                // ... flip the player.
-    //                Flip();
-    //            }
-
-    //
+    }
 }

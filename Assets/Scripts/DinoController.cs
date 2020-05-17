@@ -42,15 +42,4 @@ public class DinoController : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;    
     }
-    
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            GameController.health -= 1;
-            if (GameController.health == 0)
-                Destroy(collision.gameObject);
-        }
-
-    }
 }
