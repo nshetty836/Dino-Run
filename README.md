@@ -12,6 +12,7 @@ https://www.youtube.com/watch?v=LsUiJItfzxU - creating multiple lives for the pl
 
 Assets:\
 https://www.1001fonts.com/pixel+video-game-fonts.html - Arcade font\
+http://noobtuts.com/unity/2d-pacman-game - maze\
 https://www.shutterstock.com/video/clip-22752985-pixel-art-retro-game-style-red-hearts - hearts for lives counter\
 https://arks.itch.io/dino-characters - dinosaur enemy\
 https://elthen.itch.io/pixel-art-adventurer-sprites - player\
