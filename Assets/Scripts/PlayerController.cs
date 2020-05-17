@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed;
+    public float speed; //speed of the player
     private Rigidbody2D rb;
-    public bool facingRight = true;
-    //GameManager gm = new GameManager();
+    public bool facingRight = true;  //if player is facing right or not
+    public bool hasBooster = false;  //if player has picked up a booster gem or not
+    public float boosterSpeedAmount = 0f;
+    private float boosterTimeMax = 10f;
+    private float boosterTimeCur = 0f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
+    //update method to call Move method
     void Update()
     {
         Move();
-        BoundMovement();
     }
+
+    //Allows the user to move the player up, down, left, and right
     void Move()
     {
         float x = Input.GetAxisRaw("Horizontal");
@@ -28,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = new Vector2(moveX, moveY);
 
+        //decides when to flip character to face the right direction
         if (x > 0 && !facingRight)
         {
             Flip();
@@ -36,50 +43,52 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
- 
-
     }
 
-    void BoundMovement()
-    {
-        float dist = (this.transform.position - Camera.main.transform.position).z;
-
-        float leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).x;
-        float rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, dist)).x;
-        float topBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).y;
-        float bottomBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, dist)).y;
-
-        Vector3 playerSize = GetComponent<Renderer>().bounds.size;
-
-        this.transform.position = new Vector3(
-        Mathf.Clamp(this.transform.position.x, leftBorder + playerSize.x / 2, rightBorder - playerSize.x / 2),
-        Mathf.Clamp(this.transform.position.y, topBorder + playerSize.y / 2, bottomBorder - playerSize.y / 2),
-        this.transform.position.z
-        );
-    }
+    //flips the character to face the direction it's moving
     private void Flip()
     {
-        // Switch the way the player is labelled as facing.
         facingRight = !facingRight;
 
-        // Multiply the player's x local scale by -1.
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
+    void FixedUpdate()
+    {
+        //if boosterGem is picked up and it has been less than 10 seconds
+        if (hasBooster && boosterTimeCur < boosterTimeMax)
+        {
+            speed = boosterSpeedAmount;
+            boosterTimeCur += Time.fixedDeltaTime;
+
+        }
+        else
+        {
+            boosterTimeCur = 0f;
+            speed = 10f;
+            hasBooster = false;
+        }
+
+    }
+
+    //Method called when player collides with a dinosaur
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Enemy")
         {
+            //decreases amount of lives left
             LivesController.health -= 1;
             if (LivesController.health > 0)
             {
-                StartCoroutine(Dead());
+                StartCoroutine(Respawn());
             }
         }
     }
 
-    IEnumerator Dead()
+    //respawns the character at the middle of the maze and freezes screen for 2 seconds
+    IEnumerator Respawn()
     {
         GetComponent<Renderer>().enabled = false;
         Time.timeScale = 0f;
