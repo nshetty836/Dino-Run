@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LivesController : MonoBehaviour
 {
-    public GameObject heart1, heart2, heart3, gameOver, PauseButton, RestartButton;
+    public GameObject heart1, heart2, heart3, gameOver, PauseButton, RestartButton, playerWin;
     public static int health;
 
     // Start is called before the first frame update
@@ -15,6 +15,7 @@ public class LivesController : MonoBehaviour
         heart2.SetActive(true);
         heart3.SetActive(true);
         gameOver.SetActive(false);
+        playerWin.SetActive(false);
         RestartButton.SetActive(false);
 
     }
@@ -22,11 +23,17 @@ public class LivesController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health > 3)
+        if (health > 4)
             health = 3;
 
         switch(health)
-		{ 
+		{
+            case 4:
+                PauseButton.SetActive(false);
+                playerWin.SetActive(true);
+                RestartButton.SetActive(true);
+                Time.timeScale = 0;
+                break;
             case 3:
                 heart1.SetActive(true);
                 heart2.SetActive(true);

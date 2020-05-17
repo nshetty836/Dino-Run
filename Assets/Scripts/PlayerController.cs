@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour
     public float boosterSpeedAmount = 0f;
     private float boosterTimeMax = 10f;
     private float boosterTimeCur = 0f;
-    public int gemCount;
-    public GameObject PauseButton, GameOver, RestartButton;
 
     void Start()
     {
@@ -26,16 +24,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
-
-        Debug.Log(gemCount);
-        //if the player has won, end came from LivesController class
-        if (gemCount == 5)
-        {
-            PauseButton.SetActive(false);
-            GameOver.SetActive(true);
-            RestartButton.SetActive(true);
-            Time.timeScale = 0;
-        }
+     
     }
 
     //Allows the user to move the player up, down, left, and right

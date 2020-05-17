@@ -10,5 +10,11 @@ public class ScoreController : MonoBehaviour
     public void UpdateScore()
     {
         GetComponent<Text>().text = "" + score;
+
+        //if the player has won, end game
+        if (score == 3350)
+        {
+            LivesController.health = 4;
+        }
     }
 }
