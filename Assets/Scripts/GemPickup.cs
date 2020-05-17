@@ -7,6 +7,7 @@ public class GemPickup : MonoBehaviour
 {
     private Text scoreText;
     public float boosterSpeedAmount = 15f;
+    public int gemCount = 0;
     private void Start()
     {
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
@@ -16,6 +17,7 @@ public class GemPickup : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && this.gameObject.tag == "Booster Gem")
         {
+            gemCount++;
             Destroy(this.gameObject);
             collision.gameObject.GetComponent<PlayerController>().hasBooster = true;
             scoreText.GetComponent<ScoreController>().score += 20;
@@ -24,9 +26,12 @@ public class GemPickup : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Player")
         {
+            gemCount++;
             Destroy(this.gameObject);
             scoreText.GetComponent<ScoreController>().score += 10;
             scoreText.GetComponent<ScoreController>().UpdateScore();
         }
+        collision.gameObject.GetComponent<PlayerController>().gemCount = gemCount;
+
     }
 }

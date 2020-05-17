@@ -9,6 +9,6 @@ public class ScoreController : MonoBehaviour
 
     public void UpdateScore()
     {
-        GetComponent<Text>().text = "Score: " + score;
+        GetComponent<Text>().text = "" + score;
     }
 }

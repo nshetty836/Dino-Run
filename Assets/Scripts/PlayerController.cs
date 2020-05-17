@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,9 +13,12 @@ public class PlayerController : MonoBehaviour
     public float boosterSpeedAmount = 0f;
     private float boosterTimeMax = 10f;
     private float boosterTimeCur = 0f;
+    public int gemCount;
+    public GameObject PauseButton, GameOver, RestartButton;
 
     void Start()
     {
+        Time.timeScale = 1f;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -21,6 +26,16 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+
+        Debug.Log(gemCount);
+        //if the player has won, end came from LivesController class
+        if (gemCount == 5)
+        {
+            PauseButton.SetActive(false);
+            GameOver.SetActive(true);
+            RestartButton.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
 
     //Allows the user to move the player up, down, left, and right
@@ -28,7 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-
+    
         float moveX = x * speed;
         float moveY = y * speed;
 
