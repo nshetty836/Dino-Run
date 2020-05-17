@@ -67,21 +67,6 @@ public class PlayerController : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.tag == "Enemy")
-    //    {
-    //        LivesController.health -= 1;
-    //        //gm.StartPause();
-    //        fr.Freeze();
-    //        this.transform.position = new Vector3(14.5f, 14, 0);
-
-    //        if (LivesController.health == 0)
-    //            Destroy(this.gameObject);
-    //    }
-
-    //}
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Enemy")

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LivesController : MonoBehaviour
 {
-    public GameObject heart1, heart2, heart3, gameOver;
+    public GameObject heart1, heart2, heart3, gameOver, PauseButton;
     public static int health;
 
     // Start is called before the first frame update
@@ -44,6 +44,7 @@ public class LivesController : MonoBehaviour
                 heart1.SetActive(false);
                 heart2.SetActive(false);
                 heart3.SetActive(false);
+                PauseButton.SetActive(false);
                 gameOver.SetActive(true);
                 Time.timeScale = 0;
                 break;
