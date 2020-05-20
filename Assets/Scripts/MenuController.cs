@@ -7,17 +7,20 @@ public class MenuController : MonoBehaviour
 {
     public GameObject HowToMenu;
     public GameObject Pausemenu, PauseButton;
+    //loads the given scene name
     public void LoadScene(string SceneName)
     {
         SceneManager.LoadScene(SceneName);
     }
 
+    //opens the how to play menu
     public void HowToPlay()
     {
         HowToMenu.SetActive(true);
         Time.timeScale = 0;
     }
 
+    //goes back to the start menu
     public void BackToStart()
     {
         HowToMenu.SetActive(false);
@@ -25,6 +28,7 @@ public class MenuController : MonoBehaviour
         
     }
 
+    //pauses the game
     public void Pause()
     {
         Pausemenu.SetActive(true);
@@ -32,6 +36,8 @@ public class MenuController : MonoBehaviour
         Time.timeScale = 0;
 
     }
+
+    //resumes the game
     public void Resume()
     {
 

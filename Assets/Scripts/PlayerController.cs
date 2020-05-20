@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     public float speed; //speed of the player
     private Rigidbody2D rb;
-    public bool facingRight = true;  //if player is facing right or not
-    public bool hasBooster = false;  //if player has picked up a booster gem or not
+    public bool facingRight = true;  
+    public bool hasBooster = false;  
     public float boosterSpeedAmount = 0f;
     private float boosterTimeMax = 10f;
     private float boosterTimeCur = 0f;

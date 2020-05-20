@@ -9,6 +9,7 @@ public class ScoreController : MonoBehaviour
 
     public void UpdateScore()
     {
+        //update the score text every time a gem is picked up
         GetComponent<Text>().text = "" + score;
 
         //if the player has won, end game

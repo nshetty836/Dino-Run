@@ -10,6 +10,7 @@ public class LivesController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //giving player full lives at start of the game
         health = 3;
         heart1.SetActive(true);
         heart2.SetActive(true);
@@ -26,8 +27,10 @@ public class LivesController : MonoBehaviour
         if (health > 4)
             health = 3;
 
+        //what to do when each life is lost
         switch(health)
 		{
+            //special case when player wins
             case 4:
                 PauseButton.SetActive(false);
                 playerWin.SetActive(true);
@@ -49,6 +52,7 @@ public class LivesController : MonoBehaviour
                 heart2.SetActive(false);
                 heart3.SetActive(false);
                 break;
+            //game over
             case 0:
                 heart1.SetActive(false);
                 heart2.SetActive(false);

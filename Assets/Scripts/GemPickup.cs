@@ -7,8 +7,6 @@ public class GemPickup : MonoBehaviour
 {
     private Text scoreText;
     public float boosterSpeedAmount = 15f;
-    public int gemCount = 0;
-    //public GameObject PauseButton, GameOver, RestartButton;
 
     private void Start()
     {
@@ -17,23 +15,22 @@ public class GemPickup : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //if player picks up a booster gem
         if (collision.gameObject.tag == "Player" && this.gameObject.tag == "Booster Gem")
         {
-            //gemCount++;
             Destroy(this.gameObject);
             collision.gameObject.GetComponent<PlayerController>().hasBooster = true;
             scoreText.GetComponent<ScoreController>().score += 20;
             scoreText.GetComponent<ScoreController>().UpdateScore();
             collision.gameObject.GetComponent<PlayerController>().boosterSpeedAmount = boosterSpeedAmount;
         }
+        //if player picks up a normal gem
         else if (collision.gameObject.tag == "Player")
         {
-            //gemCount++;
             Destroy(this.gameObject);
             scoreText.GetComponent<ScoreController>().score += 10;
             scoreText.GetComponent<ScoreController>().UpdateScore();
         }
-        //collision.gameObject.GetComponent<PlayerController>().gemCount = gemCount;
 
     }
 }

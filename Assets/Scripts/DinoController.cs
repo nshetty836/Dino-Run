@@ -11,7 +11,7 @@ public class DinoController : MonoBehaviour
     public float speed = 0.3f;
     void FixedUpdate()
     {
-        // Waypoint not reached yet? then move closer
+        // Moving to the next waypoint
         if (transform.position != waypoints[current].position)
         {
             Vector3 dino = transform.position = Vector3.MoveTowards(transform.position,
@@ -34,7 +34,7 @@ public class DinoController : MonoBehaviour
 
     private void Flip()
     {
-        // Switch the way the player is labelled as facing.
+        // Switch the way the dino is labelled as facing.
         facingRight = !facingRight;
 
         // Multiply the player's x local scale by -1.
